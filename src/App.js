@@ -1,28 +1,67 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Switch, Route } from 'react-router-dom'
+import {withRouter } from 'react-router'
+import NavBar from './components/NavBar'
+import LogIn from './components/login/LoginPage'
+import SignUp from './components/signup/SignupPage'
+import Home from './components/Home'
+import BookShow from './components/BookShow'
+import Profile from './components/Profile'
+import { loadUser } from './store'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+import { connect } from 'react-redux'
+
+class App extends React.Component {
+
+	componentDidMount() {
+		let token = localStorage.getItem("token")
+		this.props.loadUser(token)
+	}
+
+	render() {
+		return (
+			<div className="App">
+
+				<NavBar 
+					isAuthenticated={this.props.userInfo.isAuthenticated}
+				/>
+
+				<Switch>
+					<Route 
+						path="/login"
+						component={LogIn}
+					/>
+					<Route 
+						path="/signup"
+						component={SignUp}
+					/>
+					<Route
+						path="/book-result"
+						component={BookShow}
+					/>
+					<Route
+						path="/profile"
+						component={Profile}
+					/>
+					<Route 
+						path="/"
+						component={Home}
+					/>
+				</Switch>
+				
+			</div>
+		)
+	}
 }
 
-export default App;
+const mapStateToProps = (state) => {
+	return state
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		loadUser: (user) => dispatch(loadUser(user))
+	}
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
