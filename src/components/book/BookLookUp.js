@@ -45,7 +45,7 @@ class BookLookUp extends React.Component {
 	}
 
 	handleResponse = (resp) => {
-		this.props.loadBook(resp)
+		this.props.loadBook(resp, this.props.userInfo.token)
 	}
 
 	createBook = (e) => {
@@ -91,7 +91,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		loadBook: (resp) => dispatch(loadBook(resp))
+		loadBook: (resp, token) => dispatch(loadBook(resp, token))
 	}
 }
 

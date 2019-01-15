@@ -3,7 +3,7 @@ import goodReadsJSONResponse from "goodreads-json-api"
 export function fetchBook(API, handleResponse) {
 	const https = require('https')
 
-	https.get(API, (res) => {
+	https.get('https://cors-anywhere.herokuapp.com/'+API, (res) => {
 		res.setEncoding('utf8')
 		let rawData = ''
 		res.on('data', (chunk) => rawData += chunk)

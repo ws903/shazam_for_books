@@ -2,7 +2,8 @@ import { isEmpty } from '../../utils/isEmpty'
 
 const initialState = {
 	isAuthenticated: false,
-	user: {}
+	user: {},
+	token: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -11,8 +12,12 @@ const reducer = (state = initialState, action) => {
 		case 'SET_CURRENT_USER':
 			return {
 				isAuthenticated: !isEmpty(action.payload),
-				user: action.payload
+				user: action.payload,
+				token: localStorage.getItem('token')
 			}
+
+		case 'LOG_OUT_CURRENT_USER':
+			return initialState
 
 		default: 
 			return state

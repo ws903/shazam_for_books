@@ -1,14 +1,26 @@
 import React from 'react'
 import { isEmpty } from '../utils/isEmpty'
+import { addBook } from '../store'
 
 import { connect } from 'react-redux'
 
 class Book extends React.Component {
 
+	checkShelf = (book) => {
+		if(this.props.bookInfo.user_books.includes(book)) {
+			console.log('HI')
+		}
+	}
+
+	handleClick = (book) => {
+		this.props.addBook(book, this.props.userInfo.token)
+	}
+
 	renderBook = () => {
 		const book = this.props.bookInfo.book
+		this.checkShelf(book)
 
-		if (!(isEmpty(book) && !('error' in book))) {
+		if ((!isEmpty(book) && !('error' in book))) {
 			return (
 				<div className="book-info">
 					<h1>Title: {book.title}</h1>
@@ -19,6 +31,13 @@ class Book extends React.Component {
 					<div>Year: {book.year}</div>
 					<div>Pages: {book.pages}</div>
 					<div>ISBN: {book.isbn}</div>
+
+					<button 
+						onClick={() => this.handleClick(book)} 
+						value="Add To Shelf"
+					>
+						Add To Shelf
+					</button>
 				</div>
 			)
 		} else {
@@ -40,4 +59,10 @@ const mapStateToProps = (state) => {
 	return state
 }
 
-export default connect(mapStateToProps)(Book)
+const mapDispatchToProps = (dispatch) => {
+	return {
+		addBook: (book, token) => dispatch(addBook(book, token))
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Book)

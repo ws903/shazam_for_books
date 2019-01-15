@@ -23,7 +23,7 @@ export const getUserBooks = (books) => {
 
 /*---------- THUNK CREATORS ----------*/
 
-export const loadBook = (resp) => {
+export const loadBook = (resp, token) => {
 	const book = {
 		title: resp.book.title,
 		img: resp.book.image_url,
@@ -36,11 +36,12 @@ export const loadBook = (resp) => {
 
 	return function (dispatch) {
 
-		return fetch('http://localhost:3000/api/v1/books', {
+		return fetch('http://localhost:3000/api/v1/books/', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Accept: 'application/json'
+				Accept: 'application/json',
+				Authorization: `${token}`
 			},
 			body: JSON.stringify(book)
 		})
@@ -50,6 +51,37 @@ export const loadBook = (resp) => {
 	}
 }
 
-// export const loadUserBooks = (user) => {
+export const loadUserBooks = (token) => {
+	return function (dispatch) {
+		return fetch('http://localhost:3000/api/v1/user_books', {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+				Authorization: `${token}`
+			}
+		})
+		.then(resp => resp.json())
+		.then(json => dispatch(getUserBooks(json.books)))
+		.catch(console.error)
+	}
+}
 
-// }
+export const addBook = (book, token) => {
+	return function (dispatch) {
+		console.log(JSON.stringify(book))
+		return fetch('http://localhost:3000/api/v1/add_book', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+				Authorization: `${token}`
+			},
+			body: JSON.stringify(book)
+		})
+		.then(resp => resp.json())
+		.then(console.log)
+		// .then(json => dispatch(getUserBooks(json.books)))
+		// .catch(console.error)
+	}
+}

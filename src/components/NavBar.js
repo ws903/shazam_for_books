@@ -13,7 +13,10 @@ const NavBar = (props) => {
 					<Link to="/profile">
 						<li className="navitem">Profile</li>
 					</Link>
-					<Link to="/logout">
+					<Link 
+						to="/"
+						onClick={props.logoutUser}
+					>
 						<li className="navitem">Log Out</li>
 					</Link>
 				</ul>

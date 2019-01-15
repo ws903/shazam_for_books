@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 			post '/login', to: 'auth#create'
 			get '/profile', to: 'users#profile'
 
-			resources :books, only: [:index, :create, :show]
+			resources :books, only: [:create]
+			post '/add_book', to: 'books#add_book'
+			get '/user_books', to: 'books#index'
 		end
 	end
 end

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import LoginForm from './LoginForm'
 import { signinUser } from '../../store'
 
@@ -9,12 +10,20 @@ class LoginPage extends React.Component {
 	handleLogIn = (user) => {
 		this.props.signinUser(user)
 	}
+
+	handleRender = () => {
+		if (this.props.isAuthenticated) {
+			return <Redirect to='/' />
+		} else {
+			return <LoginForm handleLogIn={this.handleLogIn} />
+		}
+	}
 	
 	render() {
 		return(
-			<LoginForm 
-				handleLogIn={this.handleLogIn}
-			/>
+			<div>
+				{this.handleRender()}
+			</div>
 		)
 	}	
 }

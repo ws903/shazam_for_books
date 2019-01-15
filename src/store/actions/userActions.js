@@ -7,6 +7,13 @@ export const getUser = (user) => {
 	}
 }
 
+export const eraseUser = () => {
+	localStorage.setItem('token', '')
+	return {
+		type: 'LOG_OUT_CURRENT_USER'
+	}
+}
+
 /*---------- THUNK CREATORS ----------*/
 
 export const createUser = (user) => {
@@ -63,4 +70,10 @@ export const loadUser = (token) => {
 		.then(json => dispatch(getUser(json.user)))
 		.catch(console.error)
 	}	
+}
+
+export const logoutUser = () => {
+	return function(dispatch) {
+		return dispatch(eraseUser())
+	}
 }

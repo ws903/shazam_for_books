@@ -7,8 +7,8 @@ class Home extends React.Component {
 	render() {
 		return (
 			<div className="App">
-				<BookLookUp  />
-				<BarCodeReader  />
+				<BookLookUp />
+				<BarCodeReader />
 			</div>
 		)
 	}

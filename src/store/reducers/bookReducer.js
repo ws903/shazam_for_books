@@ -1,6 +1,7 @@
 const initialState = {
 	isbn: '',
-	book: {}
+	book: {},
+	user_books: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -8,6 +9,10 @@ const reducer = (state = initialState, action) => {
 
 		case 'GET_BOOK': {
 			return { ...state, book: action.payload }
+		}
+
+		case 'GET_USER_BOOKS': {
+			return { ...state, user_books: action.payload }
 		}
 
 		case 'GET_ISBN': {
