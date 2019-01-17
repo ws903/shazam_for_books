@@ -11,7 +11,7 @@ class BookLookUp extends React.Component {
 		super(props)
 
 		this.state = {
-			isbn: this.props.bookInfo.isbn,
+			isbn: '',
 			GRKey: "XngfIa2hLeJCJHGtQeWxQ",
 			searched: false
 		}
@@ -20,7 +20,7 @@ class BookLookUp extends React.Component {
 	componentWillReceiveProps(newProps) {
 		if(newProps.bookInfo.isbn.length !== 0) {
 			this.setState({
-			isbn: newProps.bookInfo.isbn
+				isbn: newProps.bookInfo.isbn
 			})
 
 			let API = `https://www.goodreads.com/book/isbn/${newProps.bookInfo.isbn}?key=${this.state.GRKey}`
@@ -35,12 +35,6 @@ class BookLookUp extends React.Component {
 	handleChange = (e) => {
 		this.setState({
 			isbn: e.target.value
-		})
-	}
-
-	assignISBN = (isbn) => {
-		this.setState({
-			isbn: isbn
 		})
 	}
 
@@ -60,7 +54,7 @@ class BookLookUp extends React.Component {
 
 	renderBookShowPage = () => {
 		if(this.state.searched) {
-			return <Redirect to="/book-result" />
+			return <Redirect to="/book-show" />
 		}
 	}
  

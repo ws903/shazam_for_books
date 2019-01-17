@@ -50,10 +50,14 @@ class App extends React.Component {
 					/>
 					<Route 
 						path="/signup"
-						component={SignUp}
+						render={() => (
+							<SignUp 
+								isAuthenticated={this.props.userInfo.isAuthenticated}
+							/>
+						)}
 					/>
 					<Route
-						path="/book-result"
+						path="/book-show"
 						component={BookShow}
 					/>
 					<Route

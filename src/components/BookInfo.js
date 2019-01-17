@@ -1,18 +1,18 @@
 import React from 'react'
 import { isEmpty } from '../utils/isEmpty'
 
-const Book = (props) => {
+const BookInfo = (props) => {
 
 	const renderBook = () => {
 		const book = props.book
 
 		if (!(isEmpty(book) && !('error' in book))) {
 			return (
-				<div className="book-info">
+				<div onClick={() => props.handleClickDiv(book)} className="book-info">
 					<img src={book.img} alt="book cover" />
-					<h1>Title: {book.title}</h1>
-					<h2>Author: {book.author}</h2>
-					<h2>Rating: {book.rating}</h2>
+					<div>Title: {book.title}</div>
+					<div>Author: {book.author}</div>
+					<div>Rating: {book.rating}</div>
 				</div>
 			)
 		} else {
@@ -27,4 +27,4 @@ const Book = (props) => {
 	)
 }
 
-export default Book
+export default BookInfo

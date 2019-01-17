@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 			resources :books, only: [:create]
 			post '/add_book', to: 'books#add_book'
 			get '/user_books', to: 'books#index'
+			post '/delete_book', to: 'books#delete_book'
 		end
 	end
 end

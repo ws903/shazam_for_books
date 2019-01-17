@@ -80,8 +80,25 @@ export const addBook = (book, token) => {
 			body: JSON.stringify(book)
 		})
 		.then(resp => resp.json())
-		.then(console.log)
-		// .then(json => dispatch(getUserBooks(json.books)))
-		// .catch(console.error)
+		.then(json => dispatch(getUserBooks(json.books)))
+		.catch(console.error)
+	}
+}
+
+export const removeBook = (book, token) => {
+	return function (dispatch) {
+		console.log(JSON.stringify(book))
+		return fetch('http://localhost:3000/api/v1/delete_book', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+				Authorization: `${token}`
+			},
+			body: JSON.stringify(book)
+		})
+		.then(resp => resp.json())
+		.then(json => dispatch(getUserBooks(json.books)))
+		.catch(console.error)
 	}
 }

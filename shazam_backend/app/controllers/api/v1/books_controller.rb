@@ -15,10 +15,15 @@ class Api::V1::BooksController < ApplicationController
 	end
 
 	def add_book
-		byebug
 		@book = Book.where(book_params).first
-		current_user.books.build(@book)
+		current_user.books << @book
 		render json: { books: current_user.books }, status: :added
+	end
+
+	def delete_book
+		@book = Book.where(book_params).first
+		current_user.books.delete(@book)
+		render json: { books: current_user.books }, status: :deleted
 	end
 
 	def show

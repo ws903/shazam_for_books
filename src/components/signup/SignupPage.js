@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import SignupForm from './SignupForm'
 import { createUser } from '../../store'
 
@@ -10,11 +11,19 @@ class SignupPage extends React.Component {
 		this.props.createUser(user)
 	}
 
+	handleRender = () => {
+		if (this.props.isAuthenticated) {
+			return <Redirect to='/' />
+		} else {
+			return <SignupForm handleSignUp={this.handleSignUp} />
+		}
+	}
+
 	render() {
 		return(
-			<SignupForm 
-				handleSignUp={this.handleSignUp}
-			/>
+			<div>
+				{this.handleRender()}
+			</div>
 		)
 	}	
 }
