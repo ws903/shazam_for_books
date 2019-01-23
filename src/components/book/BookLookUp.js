@@ -54,7 +54,13 @@ class BookLookUp extends React.Component {
 
 	renderBookShowPage = () => {
 		if(this.state.searched) {
-			return <Redirect to="/book-show" />
+			return <Redirect to={{
+								pathname: '/book-show',
+								state: {
+									past_route: window.location.pathname
+								}
+							}}
+					/>
 		}
 	}
  

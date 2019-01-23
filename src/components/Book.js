@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import { isEmpty } from '../utils/isEmpty'
 import { addBook } from '../store'
 import { removeBook } from '../store'
@@ -42,8 +43,8 @@ class Book extends React.Component {
 	}
 
 	handleBack = () => {
-		console.log(window.history.state.state.past_router)
-		window.history.back()
+		console.log(window.history.state.state.past_route)
+		window.location.assign(window.history.state.state.past_route)
 	}
 
 	rednerBackRoute = () => {

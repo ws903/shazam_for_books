@@ -27,9 +27,6 @@ class Api::V1::BooksController < ApplicationController
 	end
 
 	def show
-		# debugger
-		byebug
-		# @book = Book.find()
 	end
 
 	private

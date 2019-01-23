@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^3.9.0",
     "barcode-js": "^11.0.198",
     "goodreads-json-api": "^1.0.4",
     "jwt-decode": "^2.2.0",

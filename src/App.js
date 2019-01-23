@@ -22,6 +22,12 @@ class App extends React.Component {
 		this.props.loadUserBooks(token)
 	}
 
+	componentDidUpdate(newProps) {
+		if (newProps.userInfo.token !== localStorage.getItem("token")) {
+			this.props.loadUserBooks(localStorage.getItem("token"))
+		}
+	}
+
 	handleRender = () => {
 		if (this.props.userInfo.isAuthenticated) {
 			return <Home />
@@ -78,7 +84,6 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-	console.log(state)
 	return state
 }
 

@@ -30,7 +30,6 @@ class Profile extends React.Component {
 
 	renderBookInfo = () => {
 		if (this.state.detail) {
-			console.log(window.history)
 			return <Redirect to={{
 								pathname: '/book-show',
 								state: {

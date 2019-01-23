@@ -1,6 +1,7 @@
 /*---------- ACTION CREATORS ----------*/
 
-export const getUser = (user) => {
+export const getUser = (user, token) => {
+	localStorage.setItem('token', token)
 	return {
 		type: 'SET_CURRENT_USER',
 		payload: user
@@ -29,8 +30,7 @@ export const createUser = (user) => {
 		})
 		.then(resp => resp.json())
 		.then(json => {
-			localStorage.setItem('token', json.jwt)
-			dispatch(getUser(json.user))
+			dispatch(getUser(json.user, json.jwt))
 		})
 		.catch(console.error)
 	}
@@ -49,8 +49,7 @@ export const signinUser = (user) => {
 		})
 		.then(resp => resp.json())
 		.then(json => {
-			localStorage.setItem('token', json.jwt)
-			dispatch(getUser(json.user))
+			dispatch(getUser(json.user, json.jwt))
 		})
 		.catch(console.error)
 	}
@@ -67,7 +66,9 @@ export const loadUser = (token) => {
 			}
 		})
 		.then(resp => resp.json())
-		.then(json => dispatch(getUser(json.user)))
+		.then(json => {
+			dispatch(getUser(json.user, token))
+		})
 		.catch(console.error)
 	}	
 }
