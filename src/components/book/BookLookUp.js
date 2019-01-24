@@ -2,8 +2,11 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { loadBook } from '../../store'
 import { fetchBook } from '../../utils/fetchBook'
+import { Button, Input } from 'semantic-ui-react'
 
 import { connect } from 'react-redux'
+
+import './BookLookUp.css'
 
 class BookLookUp extends React.Component {
 
@@ -66,19 +69,22 @@ class BookLookUp extends React.Component {
  
 	render() {
 		return(
-			<div>
+			<div className="BookLookUp">
 				{this.renderBookShowPage()}
 				<form onSubmit={this.createBook}>
-					<input 
+					<Input 
+						className="IsbnInput"
 						type="text" 
 						placeholder="Enter ISBN" 
 						value={this.state.isbn} 
 						onChange={this.handleChange} 
 					/>
-					<input 
+					<Button 
+						className="SearchButton"
 						type="submit"
-						value="Submit" 
-					/>
+					>
+						Search
+					</Button>
 				</form>
 			</div>
 		)

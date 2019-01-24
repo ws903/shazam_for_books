@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import {withRouter } from 'react-router'
+import { withRouter } from 'react-router'
 import NavBar from './components/NavBar'
 import LogIn from './components/login/LoginPage'
 import SignUp from './components/signup/SignupPage'
@@ -8,9 +8,7 @@ import Welcome from './components/Welcome'
 import Home from './components/Home'
 import BookShow from './components/BookShow'
 import Profile from './components/Profile'
-import { loadUser } from './store'
-import { loadUserBooks } from './store'
-import { logoutUser } from './store'
+import { loadUser, loadUserBooks, logoutUser } from './store'
 
 import { connect } from 'react-redux'
 

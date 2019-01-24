@@ -1,48 +1,77 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Input, Menu } from 'semantic-ui-react'
 
-const NavBar = (props) => {
+export default class NavBar extends React.Component {
 
-	const renderUtils = () => {
-		if(props.isAuthenticated) {
+	state = { activeItem: 'home' }
+
+	handleItemClick = (e, { name }) => {
+		if (name === 'logout') {
+			this.setState({ activeItem: 'home' })
+		} else {
+			this.setState({ activeItem: name })
+		}
+	}
+
+	renderUtils = () => {
+		const { activeItem } = this.state
+
+		if(this.props.isAuthenticated) {
 			return(
-				<ul className="nav-bar">
+				<Menu secondary>
+
 					<Link to="/">
-						<li className="navitem">Home</li>
+						<Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
 					</Link>
-					<Link to="/profile">
-						<li className="navitem">Profile</li>
-					</Link>
-					<Link 
-						to="/"
-						onClick={props.logoutUser}
-					>
-						<li className="navitem">Log Out</li>
-					</Link>
-				</ul>
+
+					<Menu.Menu position='right'>
+
+						<Link to="/profile">
+							<Menu.Item name='profile' active={activeItem === 'profile'} onClick={this.handleItemClick} />
+						</Link>
+
+						<Link 
+							to="/"
+							onClick={this.props.logoutUser}
+						>
+							<Menu.Item name='logout' active={activeItem === 'name'} onClick={this.handleItemClick} />
+						</Link>
+
+					</Menu.Menu>
+
+				</Menu>
 			)
 		} else {
 			return(
-				<ul className="navbar">
+				<Menu secondary>
+
 					<Link to="/">
-						<li className="navitem">Home</li>
+						<Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
 					</Link>
-					<Link to="/login">
-						<li className="navitem">Log In</li>
-					</Link>
-					<Link to="/signup">
-						<li className="navitem">Sign Up</li>
-					</Link>
-				</ul>
+
+					<Menu.Menu position='right'>
+
+						<Link to="/login">
+							<Menu.Item name='login' active={activeItem === 'login'} onClick={this.handleItemClick} />
+						</Link>
+
+						<Link to="/signup">
+							<Menu.Item name='signup' active={activeItem === 'signup'} onClick={this.handleItemClick} />
+						</Link>
+
+					</Menu.Menu>
+
+				</Menu>
 			)
 		}
 	}
 
-	return (
-		<div className="nav-bar-container">
-			{renderUtils()}
-		</div>
-	)
+	render() {
+		return (
+			<div className="nav-bar-container">
+				{this.renderUtils()}
+			</div>
+		)
+	}
 }
-
-export default NavBar

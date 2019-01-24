@@ -2,6 +2,8 @@ import React from "react"
 import Scanner from "./Scanner";
 import Result from './Result';
 
+import { Button } from 'semantic-ui-react'
+
 export default class BarCodeReader extends React.Component {
 
 	constructor(props) {
@@ -34,13 +36,43 @@ export default class BarCodeReader extends React.Component {
 		}
 	}
 
+	_renderButton() {
+		return (
+			<div className="BarCodeStartStop">
+				{this.state.scanning ? 
+					<Button 
+						size='huge'
+						color='red'
+						className="BarCodeReaderButton" 
+						onClick={this._scan}
+						content='Stop'
+						icon='stop'
+						labelPosition='left'
+					>
+					</Button> : 
+					<Button 
+						size='huge'
+						color='green'
+						className="BarCodeReaderButton" 
+						onClick={this._scan}
+						content='Start'
+						icon='play'
+						labelPosition='left'
+					>
+					</Button>
+				}
+			</div>
+		)
+	}
+
 	render() {
 		return(
 			<div>
-				<button onClick={this._scan}>{this.state.scanning ? 'Stop' : 'Start'}</button>
-		        {this.state.scanning ? <Scanner onDetected={this._onDetected} /> : null}
-		        {this.state.detected ? <Result assignISBN={this.props.assignISBN} results={this.state.results} /> : console.log('reading...')}
-	        </div>
+				{this._renderButton()}
+				<br />
+				{this.state.scanning ? <Scanner onDetected={this._onDetected} /> : null}
+				{this.state.detected ? <Result assignISBN={this.props.assignISBN} results={this.state.results} /> : console.log('reading...')}
+			</div>
 		)
 	}
 

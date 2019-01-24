@@ -1,4 +1,5 @@
 import React from 'react'
+import { Grid, Button, Checkbox, Form, Segment, Message } from 'semantic-ui-react'
 
 class SignupForm extends React.Component {
 	state = {
@@ -23,31 +24,45 @@ class SignupForm extends React.Component {
 
 	render() {
 		return(
-			<form onSubmit={this.handleSubmit} className="signup-form">
 
-				Username: 
-				<input 
-					onChange={this.handleChange}
-					type="text" 
-					name="username"
-					placeholder="Username" 
-					value={this.state.username}
-				/>
-				<br />
+			<Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+				<Grid.Column style={{ maxWidth: 450 }}>
 
-				Password: 
-				<input 
-					onChange={this.handleChange}
-					type="password" 
-					name="password"
-					placeholder="Password" 
-					value={this.state.password}
-				/>
-				<br />
+					<Form size='large' onSubmit={this.handleSubmit} className="signup-form">
+						<Segment stacked>
 
-				<button type="submit">Log In</button>
+							<Form.Input 
+								fluid icon='user' 
+								iconPosition='left' 
+								onChange={this.handleChange}
+								type="text" 
+								name="username"
+								placeholder="Username" 
+								value={this.state.username}
+							/>
+							<Form.Input
+								fluid icon='lock'
+								iconPosition='left'
+								onChange={this.handleChange}
+								type="password" 
+								name="password"
+								placeholder="Password" 
+								value={this.state.password}
+							/>
 
-			</form>
+							<Form.Button color='teal' fluid size='large'>
+								Login
+							</Form.Button>
+
+						</Segment>
+					</Form>
+
+					<Message>
+						New to us? <a href='/signup'>Sign Up</a>
+					</Message>
+
+				</Grid.Column>
+			</Grid>
 		)
 	}
 }

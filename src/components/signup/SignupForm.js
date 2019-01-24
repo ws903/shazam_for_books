@@ -1,4 +1,5 @@
 import React from 'react'
+import { Grid, Button, Checkbox, Form, Segment, Message } from 'semantic-ui-react'
 
 class SignupForm extends React.Component {
 	state = {
@@ -29,61 +30,74 @@ class SignupForm extends React.Component {
 
 	render() {
 		return(
-			<form onSubmit={this.handleSubmit} className="signup-form">
+			<Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+				<Grid.Column style={{ maxWidth: 450 }}>
 
-				Email: 
-				<input 
-					onChange={this.handleChange}
-					type="text" 
-					name="email"
-					placeholder="Email" 
-					value={this.state.email}
-				/>
-				<br />
+					<Form size='large' onSubmit={this.handleSubmit} className="signup-form">
+						<Segment stacked>
 
-				First Name: 
-				<input 
-					onChange={this.handleChange}
-					type="text" 
-					name="first_name"
-					placeholder="First Name" 
-					value={this.state.first_name}
-				/>
-				<br />
+							<Form.Input 
+								fluid icon='user' 
+								iconPosition='left' 
+								onChange={this.handleChange}
+								type="text" 
+								name="first_name"
+								placeholder="First Name" 
+								value={this.state.first_name}
+							/>
 
-				Last Name: 
-				<input 
-					onChange={this.handleChange}
-					type="text" 
-					name="last_name"
-					placeholder="Last Name" 
-					value={this.state.last_name}
-				/>
-				<br />
+							<Form.Input 
+								fluid icon='user' 
+								iconPosition='left' 
+								onChange={this.handleChange}
+								type="text" 
+								name="last_name"
+								placeholder="Last Name" 
+								value={this.state.last_name}
+							/>
 
-				Username: 
-				<input 
-					onChange={this.handleChange}
-					type="text" 
-					name="username"
-					placeholder="Username" 
-					value={this.state.username}
-				/>
-				<br />
+							<Form.Input 
+								fluid icon='mail' 
+								iconPosition='left' 
+								onChange={this.handleChange}
+								type="text" 
+								name="email"
+								placeholder="Email" 
+								value={this.state.email}
+							/>
 
-				Password: 
-				<input 
-					onChange={this.handleChange}
-					type="password" 
-					name="password"
-					placeholder="Password" 
-					value={this.state.password}
-				/>
-				<br />
+							<Form.Input 
+								fluid icon='user' 
+								iconPosition='left' 
+								onChange={this.handleChange}
+								type="text" 
+								name="username"
+								placeholder="Username" 
+								value={this.state.username}
+							/>
+							<Form.Input
+								fluid icon='lock'
+								iconPosition='left'
+								onChange={this.handleChange}
+								type="password" 
+								name="password"
+								placeholder="Password" 
+								value={this.state.password}
+							/>
 
-				<button type="submit">Sign Up!</button>
+							<Form.Button color='teal' fluid size='large'>
+								Sign Up!
+							</Form.Button>
 
-			</form>
+						</Segment>
+					</Form>
+
+					<Message>
+						Already a User? <a href='/login'>Log In</a>
+					</Message>
+
+				</Grid.Column>
+			</Grid>
 		)
 	}
 }

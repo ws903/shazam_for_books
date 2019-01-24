@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { isEmpty } from '../utils/isEmpty'
 import { addBook } from '../store'
 import { removeBook } from '../store'
+import { Button, Header, Image, Container } from 'semantic-ui-react'
 
 import { connect } from 'react-redux'
 
@@ -15,21 +16,23 @@ class Book extends React.Component {
 
 		if(contains) {
 			return(
-				<button 
+				<Button 
+					content='Remove From Shelf'
+					color='red'
+					icon='minus circle'
 					onClick={this.handleRemove} 
 					value="Remove From Shelf"
-				>
-					Remove From Shelf
-				</button>
+				/>
 			)
 		} else {
 			return(
-				<button 
+				<Button 
+					content='Add To Shelf'
+					color='green'
+					icon='plus circle'
 					onClick={this.handleAdd} 
 					value="Add To Shelf"
-				>
-					Add To Shelf
-				</button>
+				/>
 			)
 		}
 	}
@@ -56,17 +59,56 @@ class Book extends React.Component {
 
 		if ((!isEmpty(book) && !('error' in book))) {
 			return (
+
 				<div className="book-info">
-					<h1>Title: {book.title}</h1>
-					<h2>Author: {book.author}</h2>
-					<img src={book.img} alt="book cover" />
+					<Header 
+						as='h1' 
+						icon textAlign='center'
+						content={`Title: ${book.title}`}
+						style={{
+							marginTop: '1em'
+						}}
+					/>
+					<Header 
+						as='h2' 
+						icon textAlign='center'
+						content={`Author: ${book.author}`}
+					/>
+					<Image 
+						src={book.img} 
+						alt="book cover"
+						centered
+					/>
 
-					<h2>Rating: {book.rating}</h2>
-					<div>Year: {book.year}</div>
-					<div>Pages: {book.pages}</div>
-					<div>ISBN: {book.isbn}</div>
+					<Container textAlign='center'>
+						Rating: {book.rating}
+					</Container>
 
-					{this.checkShelf()}
+					<Container textAlign='center'>
+						Year: {book.year}
+					</Container>
+
+					<Container textAlign='center'>
+						Pages: {book.pages}
+					</Container>
+
+					<Container textAlign='center'>
+						ISBN: {book.isbn}
+					</Container>
+
+					<Container 
+						textAlign='center' 
+						style={{
+							marginTop: '3em'
+						}}>
+						<Button 
+							color='orange'
+							content='Back'
+							icon='arrow alternate circle left'
+							onClick={this.handleBack} 
+						/>
+						{this.checkShelf()}
+					</Container>
 				</div>
 			)
 		} else {
@@ -78,7 +120,6 @@ class Book extends React.Component {
 
 		return (
 			<div>
-				<button onClick={this.handleBack} >Back</button>
 				{this.renderBook()}
 			</div>
 		)

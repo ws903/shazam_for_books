@@ -1,0 +1,11 @@
+.BookLookUp form {
+	display: flex;
+}
+
+.BookLookUp .IsbnInput {
+	flex-grow: 2;
+}
+
+.BookLookUp .SearchButton {
+	flex-grow: 1;
+}

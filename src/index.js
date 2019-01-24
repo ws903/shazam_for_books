@@ -8,6 +8,8 @@ import App from './App'
 
 import store from './store'
 
+import './semantic/dist/semantic.min.css'
+
 ReactDOM.render(
 	<Provider store={store}>
 		<Router history={history}>
