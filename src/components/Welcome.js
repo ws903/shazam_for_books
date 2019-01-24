@@ -4,10 +4,6 @@ import { Image, Segment, Button, Icon, Container, Header } from 'semantic-ui-rea
 
 const Welcome = (props) => {
 
-	/** <div className="nav-bar-container">
-		Welcome!!
-	</div> **/
-
 	return (
 
 		<Segment

@@ -93,7 +93,7 @@ class SignupForm extends React.Component {
 					</Form>
 
 					<Message>
-						Already a User? <a href='/login'>Log In</a>
+						Already have an account? <a href='/login'>Log In</a>
 					</Message>
 
 				</Grid.Column>

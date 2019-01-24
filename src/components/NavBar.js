@@ -19,7 +19,7 @@ export default class NavBar extends React.Component {
 
 		if(this.props.isAuthenticated) {
 			return(
-				<Menu secondary>
+				<Menu secondary inverted color='orange'>
 
 					<Link to="/">
 						<Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />

@@ -17,9 +17,7 @@ class Home extends React.Component {
 					style={{
 						fontSize: '5em',
 						fontWeight: 'bold',
-						color: '#FF7E00',
-						marginBottom: 0,
-						marginBottom: '.1em'
+						color: '#FF7E00'
 					}}
 				/>
 

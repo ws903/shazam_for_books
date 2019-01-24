@@ -2,11 +2,9 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { loadBook } from '../../store'
 import { fetchBook } from '../../utils/fetchBook'
-import { Button, Input } from 'semantic-ui-react'
+import { Button, Input, Form, Grid } from 'semantic-ui-react'
 
 import { connect } from 'react-redux'
-
-import './BookLookUp.css'
 
 class BookLookUp extends React.Component {
 
@@ -69,24 +67,37 @@ class BookLookUp extends React.Component {
  
 	render() {
 		return(
-			<div className="BookLookUp">
+			<Grid 
+				textAlign='center' 
+				style={{ height: '100%' }} 
+				verticalAlign='middle' 
+				style={{
+					marginTop: '.5em'
+				}}
+			>
+
 				{this.renderBookShowPage()}
-				<form onSubmit={this.createBook}>
-					<Input 
-						className="IsbnInput"
-						type="text" 
-						placeholder="Enter ISBN" 
-						value={this.state.isbn} 
-						onChange={this.handleChange} 
-					/>
-					<Button 
-						className="SearchButton"
-						type="submit"
-					>
-						Search
-					</Button>
-				</form>
-			</div>
+
+				<Form onSubmit={this.createBook} centered>
+					<Form.Group>
+
+						<Form.Input 
+							className="IsbnInput"
+							type="text" 
+							placeholder="Enter ISBN" 
+							value={this.state.isbn} 
+							onChange={this.handleChange} 
+						/>
+						<Form.Button 
+							className="SearchButton"
+							type="submit"
+							content="Search"
+						/>
+
+					</Form.Group>
+				</Form>
+
+			</Grid>
 		)
 	}
 }

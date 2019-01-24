@@ -62,8 +62,6 @@ class Profile extends React.Component {
 
 				</Container>
 
-				<br />
-
 				<Grid celled='internally' centered>
 					{this.renderBooks()}
 					{this.renderBookInfo()}

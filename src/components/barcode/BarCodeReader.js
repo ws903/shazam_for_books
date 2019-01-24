@@ -69,7 +69,6 @@ export default class BarCodeReader extends React.Component {
 		return(
 			<div>
 				{this._renderButton()}
-				<br />
 				{this.state.scanning ? <Scanner onDetected={this._onDetected} /> : null}
 				{this.state.detected ? <Result assignISBN={this.props.assignISBN} results={this.state.results} /> : console.log('reading...')}
 			</div>
